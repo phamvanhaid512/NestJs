@@ -1,5 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn , JoinColumn,OneToMany,BeforeInsert,ManyToOne} from 'typeorm';
 import bcrypt from 'bcrypt'
+import { Inheritance } from '../../common/entity/inheritance.entity';
+import { Pet } from 'src/pet/entities/pet.entity';
 // @Entity({name:'user'})
 
 // export class User {
@@ -17,7 +19,7 @@ import bcrypt from 'bcrypt'
 //   adress:string;
 // }
 @Entity()
-export class User {
+export class User extends Inheritance {
   @PrimaryGeneratedColumn('uuid') id: number
   @Column({ nullable: true }) name: string
   @Column({ type: 'varchar', length: 100, nullable: false }) password: string
@@ -28,14 +30,4 @@ export class User {
     const salt = await bcrypt.genSalt()
     this.password = await bcrypt.hash(password || this.password, salt)
   }
-}
-// pet.entity.ts
-@Entity()
-export class Pet {
-  @PrimaryGeneratedColumn('uuid') id: number
-  @Column() name: string
-  @Column() age: number
-  @ManyToOne((type) => User, (user) => user.pets)
-  @JoinColumn({ name: 'user_id' })
-  user: User
 }
