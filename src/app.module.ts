@@ -13,7 +13,7 @@ import { PetModule } from './pet/pet.module';
       type:'mysql',
       host: 'localhost',
       port: 3306,
-      username:'root',
+      username:'haipham',
       password:'456RTYfgh!@#',
       database:'haipham',
       entities:[User,Pet],

@@ -6,23 +6,30 @@ import { Pet } from './entities/pet.entity';
 import { Repository } from 'typeorm';
 @Injectable()
 export class PetService {
+  constructor(
+    @InjectRepository(Pet) private petsRepository: Repository<Pet>,
+  ) {}
   create(createPetDto: CreatePetDto) {
-    return 'This action adds a new pet';
+      const newPets = this.petsRepository.create(createPetDto);
+      return this.petsRepository.save(newPets);
   }
 
   findAll() {
-    return `This action returns all pet`;
+    const findAllPets = this.petsRepository.find();
+    return findAllPets;
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} pet`;
+    const findOne = this.petsRepository.findOneBy({id});
+    return findOne ;
   }
 
   update(id: number, updatePetDto: UpdatePetDto) {
-    return `This action updates a #${id} pet`;
+    return this.petsRepository.update(id,updatePetDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} pet`;
+  async remove(id: number) {
+    const pets =  await this.findOne(id);
+    return this.petsRepository.remove(pets);
   }
 }
