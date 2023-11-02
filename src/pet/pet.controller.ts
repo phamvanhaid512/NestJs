@@ -7,28 +7,28 @@ import { UpdatePetDto } from './dto/update-pet.dto';
 export class PetController {
   constructor(private readonly petService: PetService) {}
 
-  @Post()
-  create(@Body() createPetDto: CreatePetDto) {
-    return this.petService.create(createPetDto);
-  }
+  // @Post()
+  // create(@Body() createPetDto: CreatePetDto) {
+  //   return this.petService.create(createPetDto);
+  // }
 
   @Get()
   findAll() {
-    return this.petService.findAll();
+    return  'sdfdfdf';
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.petService.findOne(+id);
-  }
+  // @Get(':id')
+  // findOne(@Param('id') id: string) {
+  //   return this.petService.findOne(+id);
+  // }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updatePetDto: UpdatePetDto) {
-    return this.petService.update(+id, updatePetDto);
-  }
+  // @Patch(':id')
+  // update(@Param('id') id: string, @Body() updatePetDto: UpdatePetDto) {
+  //   return this.petService.update(+id, updatePetDto);
+  // }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.petService.remove(+id);
-  }
+  // @Delete(':id')
+  // remove(@Param('id') id: string) {
+  //   return this.petService.remove(+id);
+  // }
 }
