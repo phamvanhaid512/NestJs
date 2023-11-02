@@ -1,14 +1,20 @@
-import { Entity,PrimaryGeneratedColumn,Column } from "typeorm";
-@Entity()
+import { Column, Entity } from "cassandra-orm4nest";
+import { Timestamp } from "typeorm";
+@Entity({
+    keyspace: 'test',
+    table: 'device'
+})
 export class Inheritance {
-    @PrimaryGeneratedColumn()
-    id:number;
     @Column()
-    email:string;
+    id: number
     @Column()
-    adress:string;
+    status: number
     @Column()
-    phone:number;
+    created_at:Timestamp
     @Column()
-    status:number
+    created_by: Timestamp
+    @Column()
+    update_at: Timestamp
+    @Column()
+    update_by: Timestamp
 }
