@@ -1,31 +1,22 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
+import { CassandraModule } from '@mich4l/nestjs-cassandra';
 import { AppService } from './app.service';
+import { ConfigModule,ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UsersModule } from './users/users.module';
-import { User} from './users/entities/user.entity';
-import { Pet } from './pet/entities/pet.entity';
-// import {dataSourceOptions} from './db/data-source.';
-import { PetModule } from './pet/pet.module';
+import { UserModule } from './user/user.module';
+import { PostModule } from './post/post.module';
+
 @Module({
-  // imports: [
-  //   TypeOrmModule.forRoot({
-  //     type:'mysql',
-  //     host: 'localhost',
-  //     port: 3306,
-  //     username:'root',
-  //     password:'456RTYfgh!@#',
-  //     database:'haipham',
-  //     entities:[User,Pet],
-  //     migrations: ['dist/db/migration/*.js'],
-  //     synchronize:true
-  //   }),
-  //   // TypeOrmModule.forRoot(dataSourceOptions),
-  //   UsersModule,
-  //   PetModule
-  // ],
-  
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    CassandraModule.forRoot({
+      keyspace: 'table_user',
+      contactPoints: ['localhost'],
+      localDataCenter: 'datacenter1',
+    }),
+  UserModule,
+  PostModule],
+  controllers:[AppController],
+  providers:[AppService ]
 })
 export class AppModule {}
