@@ -9,5 +9,6 @@ export default new DataSource({
   password: process.env.DB_PASSWORD || '456RTYfgh!@#',
   database: process.env.DB_NAME || 'haipham',
   logging: false,
-  migrations: [Vasdsd1698722767660],
+  migrations: [Vasdsd1698722767660]
 });
+// orm-test.module.ts

@@ -1,16 +1,23 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
+import { CassandraModule } from '@mich4l/nestjs-cassandra';
 import { AppService } from './app.service';
-import { UsersModule } from './users/users.module';
-import { User,Pet } from './users/entities/user.entity';
-// import {dataSourceOptions} from './db/data-source.';
-import { PetModule } from './pet/pet.module';
+import { UserModule } from './user/user.module';
+import { PostModule } from './post/post.module';
+import { AuthModule } from './auth/auth.module';
+
 @Module({
-  imports: [ 
-    UsersModule,
-  ],
-  
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    // CassandraModule.forRoot({
+    //   keyspace: 'table_user',
+    //   contactPoints: ['localhost'],
+    //   localDataCenter: 'datacenter1',
+    // }),
+  UserModule,
+  PostModule,
+  AuthModule
+],
+  controllers:[AppController],
+  providers:[AppService ]
 })
 export class AppModule {}
