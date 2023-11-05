@@ -15,11 +15,13 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
   @Post()
   async createUser(
+    
     @Body('name') name: string,
     @Body('password') password: string,
-  ) {
-    return await this.userService.createUser(name, password);
-    
+    @Res() res :any
+   ) {
+   const user =  await this.userService.createUser(name, password);
+    res.json(user);
   }
   @Get(':id')
   async getUser(@Param('id') userId: string) {

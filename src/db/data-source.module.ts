@@ -9,9 +9,10 @@ export class DatabaseService {
     keyspace: 'table_user',
     localDataCenter: 'datacenter1',
   });
-  async execute(query: string, params: any[]): Promise<void> {
+  async execute(query: string, params: any[]): Promise<any> {
     try {
-      await this.client.execute(query, params);
+      const result =   await this.client.execute(query, params);
+      return result.rows;
     } catch (error) {
       throw new Error('Database error: ' + error.message);
     }
