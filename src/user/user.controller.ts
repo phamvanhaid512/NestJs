@@ -18,9 +18,11 @@ export class UserController {
     
     @Body('name') name: string,
     @Body('password') password: string,
+    @Body('address') address:string,
+    @Body('status') status:string,
     @Res() res :any
    ) {
-   const user =  await this.userService.createUser(name, password);
+   const user =  await this.userService.createUser(name, password,address,status);
     res.json(user);
   }
   @Get(':id')
