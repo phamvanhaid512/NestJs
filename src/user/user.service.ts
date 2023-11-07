@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { v4 as uuid } from 'uuid';
 const cassandra = require('cassandra-driver');
 import { DatabaseService } from 'src/db/data-source.module';
+import { CreateUserDto } from './dto/create-user.dto';
 export type User = any;
-
 const bcrypt = require("bcryptjs");
 @Injectable()
 export class UserService {
@@ -20,11 +20,9 @@ export class UserService {
       password: 'guess',
     },
   ];
-
   constructor() {
     this.client = new DatabaseService();
   }
-
   // async createUser(name: string, password: string): Promise<any> {
   //   const userId = uuid();
   //   const checkEmailQuery ='SELECT * FROM user WHERE name = ? ALLOW FILTERING';
@@ -46,22 +44,22 @@ export class UserService {
   //     throw new Error('Error when creating user: ' + error.message);
   //   }
   // }
-  async createUser(name: string, password: string): Promise<any> {
+  async createUser(createUserDto:CreateUserDto): Promise<any> {
     const userId = uuid();
     const checkNameQuery = 'SELECT * FROM user WHERE name = ? ALLOW FILTERING';
-    const query = 'INSERT INTO user (id, name, password) VALUES (?, ?, ?)';
+    const query = 'INSERT INTO user (id, name, password,address,status) VALUES (?, ?, ?,?,?)';
     const querySelect = 'SELECT * FROM user WHERE id = ?';
     const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+    console.log("bug ow day")
+    const hashedPassword = await bcrypt.hash(createUserDto.password, salt);
     try {
       // Kiểm tra xem tên người dùng đã tồn tại hay chưa
-      const nameCheckResult = await this.client.execute(checkNameQuery, [name]);
+      const nameCheckResult = await this.client.execute(checkNameQuery, [createUserDto.name]);
       console.log("mang name", nameCheckResult);
-  
       if (nameCheckResult.length > 0) {
         return "Name already exists";
       }
-      await this.client.execute(query, [userId, name, hashedPassword]);
+      await this.client.execute(query, [userId, createUserDto.name, hashedPassword,createUserDto.address,createUserDto.status]);
       const result = await this.client.execute(querySelect, [userId]);
       console.log(result);
       return result; // Trả về hàng đầu tiên từ kết quả
@@ -69,11 +67,7 @@ export class UserService {
       throw new Error('Error when creating user: ' + error.message);
     }
   }
-  
-  
   async getUserById(userId: string) {
-    console.log('213');
-
     const query = 'SELECT * FROM user WHERE id = ?';
     const result = await this.client.select(query, [userId]);
     return result;
@@ -109,7 +103,6 @@ export class UserService {
     }
   }
   //auth
-
   async findOne(username: string): Promise<User | undefined> {
     return this.users.find(user => user.username === username);
   }

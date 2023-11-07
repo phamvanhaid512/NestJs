@@ -1,5 +1,11 @@
-import { Inheritance } from "src/common/dto/inheritance.dto";
+import { Inheritance } from 'src/common/dto/inheritance.dto';
+import { IsEmail, IsNotEmpty, IsString, Min ,Max} from 'class-validator';
 export class CreateUserDto extends Inheritance {
-    email: string;
-    password: string;
+  @IsNotEmpty()
+  public name: string;
+  @IsNotEmpty()
+
+  public password: string;
+  @IsString()
+  public address: string;
 }

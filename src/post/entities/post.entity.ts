@@ -1,14 +1,12 @@
-import { Column, Entity } from "cassandra-orm4nest";
 import { Inheritance } from '../../common/entity/inheritance.entity';
-
+import { IsNotEmpty, Min, IsString } from 'class-validator';
 export class Post extends Inheritance {
-    @Column()
-    title:string;
-    @Column()
-    name:string;
-    @Column()
-    logo:string;
-    @Column()
-    content:string;
-
+  @IsNotEmpty()
+  title: string;
+  @Min(5)
+  name: string;
+  @IsNotEmpty()
+  logo: string;
+  @Min(10)
+  content: string;
 }

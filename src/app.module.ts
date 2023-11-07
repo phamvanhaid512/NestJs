@@ -6,7 +6,6 @@ import { UserModule } from './user/user.module';
 import { PostModule } from './post/post.module';
 import { AuthModule } from './auth/auth.module';
 import {AuthService } from './auth/auth.service';
-
 @Module({
   imports: [
     // CassandraModule.forRoot({
@@ -16,7 +15,8 @@ import {AuthService } from './auth/auth.service';
     // }),
   UserModule,
   PostModule,
-  AuthModule
+  AuthModule,
+
 ],
   controllers:[AppController],
   providers:[AppService  ]

@@ -8,21 +8,23 @@ import {
   Body,
   Res,
   Req,
+  ValidationPipe
 } from '@nestjs/common';
 import { UserService } from './user.service';
+import { CreateUserDto } from './dto/create-user.dto';
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
   @Post()
   async createUser(
-    
-    @Body('name') name: string,
-    @Body('password') password: string,
-    @Body('address') address:string,
-    @Body('status') status:string,
+    // @Body('name') name: string,
+    // @Body('password') password: string,
+    // @Body('address') address:string,
+    // @Body('status') status:number,
+    @Body(new ValidationPipe()) createUserDto: CreateUserDto,
     @Res() res :any
    ) {
-   const user =  await this.userService.createUser(name, password,address,status);
+   const user =  await this.userService.createUser(createUserDto);
     res.json(user);
   }
   @Get(':id')
@@ -30,7 +32,6 @@ export class UserController {
     const result = await  this.userService.getUserById(userId);
     console.log(result);
     return result;
-
   }
   @Put(':id')
   async updateUser(

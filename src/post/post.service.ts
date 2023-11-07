@@ -3,19 +3,19 @@ import { Injectable } from '@nestjs/common';
 import { uuid } from 'uuidv4';
 import { DatabaseService } from 'src/db/data-source.module';
 const cassandra = require('cassandra-driver');
+import { CreatePostDto } from './dto/create-post.dto';
 @Injectable()
 export class PostService {
   private readonly client: DatabaseService;
   constructor() {
     this.client = new DatabaseService();
   }
-  async createPost(title: string, name: string, logo: string, content:string) {
+  async createPost(createPostDto:CreatePostDto) :Promise <any> {
     const postId = uuid();
-   
-    const query = 'INSERT INTO post (id,content , logo,name,title ) VALUES (?, ?, ?)';
+    const query = 'INSERT INTO post (id,content , logo,name,title ) VALUES (?, ?, ?,?,?)';
     const querySelect = 'SELECT * FROM post  WHERE id = ?';
     try {
-      await this.client.execute(query, [postId,title, name, logo, content]);
+      await this.client.execute(query, [postId,createPostDto.title, createPostDto.name, createPostDto.logo,createPostDto.content]);
       const result = await this.client.select(
         querySelect,[postId]
       );

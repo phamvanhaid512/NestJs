@@ -6,39 +6,35 @@ import {
   Patch,
   Param,
   Delete,
+  ValidationPipe,
 } from '@nestjs/common';
 import { PostService } from './post.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
-
 @Controller('post')
 export class PostController {
   constructor(private readonly postService: PostService) {}
 
   @Post()
   async createPost(
-    @Body('content') content: string,
-    @Body('logo') logo: string,
-    @Body('name') name: string,
-    @Body('title') title: string,
+    // @Body('content') content: string,
+    // @Body('logo') logo: string,
+    // @Body('name') name: string,
+    // @Body('title') title: string,
+    @Body(new ValidationPipe()) createPostDto: CreatePostDto,
   ) {
-    const result = await this.postService.createPost(
-      content,
-      logo,
-      name,
-      title,
-    );
+    const result = await this.postService.createPost(createPostDto);
     return result;
   }
   @Get(':id')
   async getPost(@Param('id') postId: string) {
-    const result = await  this.postService.getPostById(postId);
+    const result = await this.postService.getPostById(postId);
     console.log(result);
     return result;
   }
   @Delete(':id')
-  async DeletePost(@Param('id') postId:string) {
-    const result = await  this.postService.DeletePostId(postId);
+  async DeletePost(@Param('id') postId: string) {
+    const result = await this.postService.DeletePostId(postId);
     console.log(result);
     return result;
   }
