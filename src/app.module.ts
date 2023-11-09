@@ -6,16 +6,13 @@ import { UserModule } from './user/user.module';
 import { PostModule } from './post/post.module';
 import { AuthModule } from './auth/auth.module';
 import {AuthService } from './auth/auth.service';
+import { FeedBackModule } from './feed-back/feed-back.module';
 @Module({
   imports: [
-    // CassandraModule.forRoot({
-    //   keyspace: 'table_user',
-    //   contactPoints: ['localhost'],
-    //   localDataCenter: 'datacenter1',
-    // }),
   UserModule,
   PostModule,
   AuthModule,
+  FeedBackModule,
 
 ],
   controllers:[AppController],

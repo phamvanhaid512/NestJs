@@ -11,14 +11,14 @@ export class DatabaseService {
   });
   async execute(query: string, params: any[]): Promise<any> {
     try {
-      const result =   await this.client.execute(query, params);
+      const result = await this.client.execute(query, params);
       return result.rows;
     } catch (error) {
       throw new Error('Database error: ' + error.message);
     }
   }
   // async select(props:{query: string, params: any[]}): Promise<any[]> {
-  //const {query,params} = 
+  //const {query,params} =
   //   try {
   //     const result = await this.client.execute(query, params);
   //     return result.rows;
