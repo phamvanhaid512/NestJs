@@ -35,6 +35,17 @@ export class PostController {
         // @Body('name') name: string,
     // @Body('title') title: string,
     return result;
+      // @Get()
+  // findAll() {
+  //   return this.postService.findAll();
+  // }
+    // @Get()
+  // findAll() {
+  //   return this.postService.findAll();
+  // }  // @Get()
+  // findAll() {
+  //   return this.postService.findAll();
+  // }
   }
   
   @Delete(':id')
@@ -42,18 +53,10 @@ export class PostController {
     const result = await this.postService.DeletePostId(postId);
     console.log(result);
     return result;
-        // @Body('name') name: string,
-    // @Body('title') title: string,
-        // @Body('name') name: string,
-    // @Body('title') title: string,
-        // @Body('name') name: string,
-    // @Body('title') title: string,    // @Body('name') name: string,
-    // @Body('title') title: string,
-        // @Body('name') name: string,
-    // @Body('title') title: string,    // @Body('name') name: string,
-    // @Body('title') title: string,
-        // @Body('name') name: string,
-    // @Body('title') title: string,
+      // @Get()
+  // findAll() {
+  //   return this.postService.findAll();
+  // }
   }
   // @Get()
   // findAll() {
