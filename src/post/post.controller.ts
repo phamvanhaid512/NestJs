@@ -31,12 +31,27 @@ export class PostController {
     const result = await this.postService.getPostById(postId);
     console.log(result);
     return result;
+      // @Get()
+  // findAll() {
+  //   return this.postService.findAll();
+  // }
+    // @Get()
+  // findAll() {
+  //   return this.postService.findAll();
+  // }  // @Get()
+  // findAll() {
+  //   return this.postService.findAll();
+  // }
   }
   @Delete(':id')
   async DeletePost(@Param('id') postId: string) {
     const result = await this.postService.DeletePostId(postId);
     console.log(result);
     return result;
+      // @Get()
+  // findAll() {
+  //   return this.postService.findAll();
+  // }
   }
   // @Get()
   // findAll() {
