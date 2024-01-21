@@ -25,6 +25,17 @@ export class PostController {
     // @Body('logo') logo: string,
     // @Body('name') name: string,
     // @Body('title') title: string,
+        // @Body('content') content: string,
+    // @Body('logo') logo: string,
+    // @Body('name') name: string,
+    // @Body('title') title: string,
+        // @Body('content') content: string,
+    // @Body('logo') logo: string,
+    // @Body('name') name: string,
+    // @Body('title') title: string,    // @Body('content') content: string,
+    // @Body('logo') logo: string,
+    // @Body('name') name: string,
+    // @Body('title') title: string,
     @Body(new ValidationPipe()) createPostDto: CreatePostDto,
   ) {
     const result = await this.postService.createPost(createPostDto);
