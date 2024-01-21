@@ -30,6 +30,10 @@ export class PostController {
   async getPost(@Param('id') postId: string) {
     const result = await this.postService.getPostById(postId);
     console.log(result);
+        // @Body('name') name: string,
+    // @Body('title') title: string,
+        // @Body('name') name: string,
+    // @Body('title') title: string,
     return result;
       // @Get()
   // findAll() {
@@ -43,6 +47,7 @@ export class PostController {
   //   return this.postService.findAll();
   // }
   }
+  
   @Delete(':id')
   async DeletePost(@Param('id') postId: string) {
     const result = await this.postService.DeletePostId(postId);
