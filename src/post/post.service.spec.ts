@@ -3,7 +3,10 @@ import { PostService } from './post.service';
 
 describe('PostService', () => {
   let service: PostService;
-
+  // @Get()
+  // findAll() {
+  //   return this.postService.findAll();
+  // }
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [PostService],
