@@ -4,7 +4,10 @@ import { PostService } from './post.service';
 
 describe('PostController', () => {
   let controller: PostController;
-
+  // @Get()
+  // findAll() {
+  //   return this.postService.findAll();
+  // }
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [PostController],

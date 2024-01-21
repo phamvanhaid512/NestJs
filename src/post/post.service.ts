@@ -10,6 +10,10 @@ export class PostService {
   constructor() {
     this.client = new DatabaseService();
   }
+    // @Get()
+  // findAll() {
+  //   return this.postService.findAll();
+  // }
   async createPost(createPostDto:CreatePostDto) :Promise <any> {
     const postId = uuid();
     const query = 'INSERT INTO post (id,content , logo,name,title ) VALUES (?, ?, ?,?,?)';
