@@ -30,13 +30,30 @@ export class PostController {
   async getPost(@Param('id') postId: string) {
     const result = await this.postService.getPostById(postId);
     console.log(result);
+        // @Body('name') name: string,
+    // @Body('title') title: string,
+        // @Body('name') name: string,
+    // @Body('title') title: string,
     return result;
   }
+  
   @Delete(':id')
   async DeletePost(@Param('id') postId: string) {
     const result = await this.postService.DeletePostId(postId);
     console.log(result);
     return result;
+        // @Body('name') name: string,
+    // @Body('title') title: string,
+        // @Body('name') name: string,
+    // @Body('title') title: string,
+        // @Body('name') name: string,
+    // @Body('title') title: string,    // @Body('name') name: string,
+    // @Body('title') title: string,
+        // @Body('name') name: string,
+    // @Body('title') title: string,    // @Body('name') name: string,
+    // @Body('title') title: string,
+        // @Body('name') name: string,
+    // @Body('title') title: string,
   }
   // @Get()
   // findAll() {
